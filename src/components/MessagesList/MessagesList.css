@@ -1,0 +1,31 @@
+.MessagesList {
+  padding: 1.5em;
+  border: 1px solid black;
+  background-color: white;
+  text-align: left;
+  overflow: scroll;
+}
+
+.message {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.2);
+  font-style: italic;
+  height: 2em;
+  line-height: 2em;
+  display: flex;
+  flex-direction: row;
+}
+
+.message.public {
+  background-color: white;
+  font-style: normal;
+}
+
+.message p {
+  margin: 0;
+}
+
+.message .meta {
+  font-size: 0.8em;
+  margin-right: 1em;
+}

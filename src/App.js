@@ -1,24 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import "./App.css";
+import MessagesList from "./components/MessagesList/MessagesList";
+import MessageInput from "./components/MessageInput/MessageInput";
+import { get, post } from "./api";
 
 function App() {
+  const [messages, setMessages] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchMessages() {
+      try {
+        const messages = await get();
+        setMessages(messages);
+        setIsLoading(false);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    fetchMessages();
+  }, []);
+
+  const sendMessage = async (message) => {
+    setIsLoading(true);
+    try {
+      const resp = await post(message);
+      resp.status === 200 &&
+        setMessages((messages) => [...messages, resp.message]);
+      setIsLoading(false);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <MessagesList messages={messages} />
+      <MessageInput handleSubmit={sendMessage} isLoading={isLoading} />
     </div>
   );
 }
