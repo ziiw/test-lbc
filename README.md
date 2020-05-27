@@ -1,3 +1,33 @@
+## Test technique
+
+### Rappel des consignes
+
+```
+Développer une interface capable de lister des messages. Elle permettra également de remplir un message pour le poster.
+
+Un message est composé d’un texte et d’un champ précisant s’il est privé ou public.
+
+L’approche doit être API centrique, mais il n’est pas nécessaire de développer les API pour le test. Des données statiques seront suffisantes pour peupler les pages.
+
+Votre développement doit pouvoir être repris facilement par un autre membre de l’équipe, il doit disposer de tous les éléments pour comprendre votre travail facilement.
+
+Vous devez prendre les meilleures dispositions pour garantir la qualité et le fonctionnement de votre livrable.
+
+Merci de nous déposer le code sur un repository de votre choix qui soit accessible afin que nous puissions le regarder.
+```
+
+### Commentaires
+
+Le projet à été créé en utilisant `create-react-app` (readme officiel à la suite).
+J'utilise la convention de `Prettier` pour le formatage de mon code (non présent dans un git action, donc à ajouter dans votre éditeur).
+
+Le projet est composé de deux composants simple `MessagesList` et `MessageInput`, le premier servant à afficher les messages, le deuxieme à en poster un nouveau. Chaque composant contient des tests de regression basique dans leurs fichiers de test associé `Composant.test.js`.
+
+Le HOC `App` sert d'interface de control de donnée afin de faire appel à l'API. J'ai fait le choix de garder les composants sans logique afin de maximiser leurs réutilisabilité.
+L'usage des Hook `useReducer` et `useContext`, m'a paru de trop pour l'exercice demandé, et dans le cas présent `useState` remplis les fonctions attendu en gardant un code simple.
+
+### Readme de create-react-app
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
